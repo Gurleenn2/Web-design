@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Famous Foods of Punjab</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=1470&q=80'); /* new HD background */
+            background-size: cover;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            color: #222;
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #FFD700;
+            padding: 30px;
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            margin: 30px auto;
+            padding: 30px;
+            max-width: 1000px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        .food-item {
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #fff8e1;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .food-item img {
+            width: 120px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .food-details {
+            flex: 1;
+        }
+        .food-item h2 {
+            color: #B22222;
+            margin: 0 0 5px 0;
+        }
+        .food-item label {
+            font-weight: bold;
+        }
+        button {
+            background-color: #B22222;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 10px 0 0;
+        }
+        #moreFoods {
+            display: none;
+        }
+        .special-offer {
+            margin-top: 30px;
+            font-size: 20px;
+            font-weight: bold;
+            color: green;
+            text-align: center;
+            background-color: #e8f5e9;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        🍽 Famous Foods of Punjab 🍲
+    </header>
+    <div class="container">
+        <div class="food-item">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Sarson_da_saag_with_makki_di_roti.jpg" alt="Sarson da Saag">
+            <div class="food-details">
+                <h2>Makki di Roti & Sarson da Saag - ₹120</h2>
+                <label><input type="checkbox" value="120"> Add to order</label>
+            </div>
+        </div>
+        <div class="food-item">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Chole_Bhature.jpg" alt="Chole Bhature">
+            <div class="food-details">
+                <h2>Chole Bhature - ₹100</h2>
+                <label><input type="checkbox" value="100"> Add to order</label>
+            </div>
+        </div>
+        <div id="moreFoods">
+            <div class="food-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/37/Amritsari_Kulcha.jpg" alt="Amritsari Kulcha">
+                <div class="food-details">
+                    <h2>Amritsari Kulcha - ₹90</h2>
+                    <label><input type="checkbox" value="90"> Add to order</label>
+                </div>
+            </div>
+            <div class="food-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Butter_Chicken.jpg" alt="Butter Chicken">
+                <div class="food-details">
+                    <h2>Butter Chicken - ₹180</h2>
+                    <label><input type="checkbox" value="180"> Add to order</label>
+                </div>
+            </div>
+            <div class="food-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Lassi.jpg" alt="Lassi">
+                <div class="food-details">
+                    <h2>Lassi - ₹60</h2>
+                    <label><input type="checkbox" value="60"> Add to order</label>
+                </div>
+            </div>
+            <div class="food-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Paneer_Tikka.jpg" alt="Paneer Tikka">
+                <div class="food-details">
+                    <h2>Paneer Tikka - ₹150</h2>
+                    <label><input type="checkbox" value="150"> Add to order</label>
+                </div>
+            </div>
+            <div class="food-item">
+                <img src="C:\Users\HP\Pictures\Saved Pictures\food pics" alt="Rajma Chawal">
+                <div class="food-details">
+                    <h2>Rajma Chawal - ₹90</h2>
+                    <label><input type="checkbox" value="90"> Add to order</label>
+                </div>
+            </div>
+        </div>
+        <button onclick="showMore()">Show More</button>
+        <button onclick="openBillPage()">Generate Bill</button>
+
+        <div class="special-offer">
+            🎉 Happy Hour Special: Get 10% Discount on Orders Above ₹300! 🎉
+        </div>
+    </div>
+
+    <script>
+        function showMore() {
+            var more = document.getElementById("moreFoods");
+            more.style.display = more.style.display === "none" ? "block" : "none";
+        }
+
+        function openBillPage() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            let total = 0;
+            checkboxes.forEach(cb => total += parseInt(cb.value));
+
+            const gst = total * 0.05;
+            let discount = 0;
+            if (total > 300) {
+                discount = total * 0.10;
+            }
+            const grandTotal = total + gst - discount;
+
+            const billWindow = window.open("", "Bill", "width=400,height=600");
+            billWindow.document.write("<html><head><title>Your Bill</title><style>body{font-family:sans-serif;padding:20px;}h2{color:#B22222;}p{margin:10px 0;}</style></head><body>");
+            billWindow.document.write("<h2>🧾 Your Order Summary</h2>");
+            checkboxes.forEach(cb => {
+                billWindow.document.write("<p>" + cb.parentNode.previousElementSibling.textContent + "</p>");
+            });
+            billWindow.document.write("<hr>");
+            billWindow.document.write("<p><strong>Total (without GST):</strong> ₹" + total + "</p>");
+            billWindow.document.write("<p><strong>GST (5%):</strong> ₹" + gst.toFixed(2) + "</p>");
+            billWindow.document.write("<p><strong>Happy Hour Discount:</strong> -₹" + discount.toFixed(2) + "</p>");
+            billWindow.document.write("<h3>Total Amount Payable: ₹" + grandTotal.toFixed(2) + "</h3>");
+            billWindow.document.write("</body></html>");
+        }
+    </script>
+</body>
+</html>
